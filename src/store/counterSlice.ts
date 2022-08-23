@@ -3,10 +3,12 @@ import { Post } from '../react-app-env';
 
 export interface InitialState {
   posts: Post[],
+  selectedPostId: null | number,
 }
 
 const initialState : InitialState = {
   posts: [],
+  selectedPostId: null,
 };
 
 export const counterSlice = createSlice({
@@ -15,6 +17,9 @@ export const counterSlice = createSlice({
   reducers: {
     showPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload;
+    },
+    selectPost: (state, action: PayloadAction<number>) => {
+      state.selectedPostId = action.payload;
     },
   },
 });

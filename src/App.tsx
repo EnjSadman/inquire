@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link, Route, Routes } from 'react-router-dom';
 import { GetFromServer } from './api/requests';
 import './App.scss';
+import { HomePage } from './pages/Homepage';
+import { PostCreator } from './pages/PostCreator';
+import { Posts } from './pages/Posts';
 import { counterSlice } from './store/counterSlice';
-import { loadPosts } from './store/selectors';
-import store from './store/store';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const post = loadPosts(store.getState().counter);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -18,19 +19,20 @@ export const App: React.FC = () => {
     };
 
     fetcher();
-  }, []);
+  });
 
   return (
-    <div className="posts__container">
-      {
-        (post)
-          ? (123)
-          : (
-            <p>
-              There is no posts right now :c
-            </p>
-          )
-      }
-    </div>
+    <>
+      <header>
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+        <Link to="/post_creator">Create Post</Link>
+      </header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/post_creator" element={<PostCreator />} />
+      </Routes>
+    </>
   );
 };
