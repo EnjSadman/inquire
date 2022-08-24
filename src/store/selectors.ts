@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { PostDataType } from '../react-app-env';
 
 export const postSelector = (state : any) => state.counter.posts;
 export const postIdSelector = (state : any) => state.counter.selectedPostId;
@@ -12,5 +13,5 @@ export const loadSinglePost = createSelector(([postIdSelector, postSelector]), (
     return null;
   }
 
-  return (posts.find((el : any) => el.id === id));
+  return (posts.find((el : PostDataType) => el.id === id));
 });

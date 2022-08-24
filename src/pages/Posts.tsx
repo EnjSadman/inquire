@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { loadPosts } from '../store/selectors';
+import { loadPosts, loadSinglePost } from '../store/selectors';
 import { Post } from '../components/Post/Post';
+import { PostDataType } from '../react-app-env';
+import { Comments } from '../components/Comments/Comments';
 
 export const Posts : React.FC = () => {
   const posts = useSelector(loadPosts);
+  const selectedPost = useSelector(loadSinglePost);
 
   const [isPostsShown, setPostsShown] = useState(false);
 
@@ -13,9 +16,24 @@ export const Posts : React.FC = () => {
       {
         (isPostsShown)
           ? (
-            posts.map((el : any) => (
-              <Post key={el.id} id={el.id} title={el.title} body={el.body} />
-            ))
+            (selectedPost === null)
+              ? (
+                posts.map((el : PostDataType) => (
+                  <Post key={el.id} id={el.id} title={el.title} body={el.body} />
+                ))
+              )
+              : (
+                <>
+                  <Post
+                    key={selectedPost.id}
+                    id={selectedPost.id}
+                    title={selectedPost.title}
+                    body={selectedPost.body}
+                  />
+                  <Comments id={selectedPost.id} />
+
+                </>
+              )
           )
           : (
             <>
@@ -30,7 +48,6 @@ export const Posts : React.FC = () => {
               <p>
                 There is no posts right now :c
               </p>
-
             </>
           )
       }

@@ -19,7 +19,7 @@ export const App: React.FC = () => {
     };
 
     fetcher();
-  });
+  }, []);
 
   return (
     <>

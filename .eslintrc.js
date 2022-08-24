@@ -17,6 +17,7 @@ module.exports = {
     'import/extensions': 0,
     'import/no-unresolved': 0,
     'no-console': 1,
+    'no-nested-ternary': 0,
 
     // TypeScript
     '@typescript-eslint/no-unused-vars': ['error'],

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Post } from '../react-app-env';
+import { PostDataType } from '../react-app-env';
 
 export interface InitialState {
-  posts: Post[],
+  posts: PostDataType[],
   selectedPostId: null | number,
 }
 
@@ -15,10 +15,10 @@ export const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    showPosts: (state, action: PayloadAction<Post[]>) => {
+    showPosts: (state, action: PayloadAction<PostDataType[]>) => {
       state.posts = action.payload;
     },
-    selectPost: (state, action: PayloadAction<number>) => {
+    selectPost: (state, action: PayloadAction<number | null>) => {
       state.selectedPostId = action.payload;
     },
   },

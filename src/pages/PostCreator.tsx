@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { PutOnServer } from '../api/requests';
 import { counterSlice } from '../store/counterSlice';
 import { loadPosts } from '../store/selectors';
 
@@ -23,6 +24,7 @@ export const PostCreator : React.FC = () => {
           };
 
           dispatch(counterSlice.actions.showPosts([...posts, newPost]));
+          PutOnServer('posts', newPost);
         }}
       >
         <input

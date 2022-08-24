@@ -1,6 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { DeleteFromServer, GetFromServer } from '../../api/requests';
 import { counterSlice } from '../../store/counterSlice';
+import { loadSinglePost } from '../../store/selectors';
 import './Post.scss';
 
 interface Props {
@@ -12,6 +14,8 @@ interface Props {
 export const Post : React.FC<Props> = ({ id, title, body }) => {
   const dispatch = useDispatch();
 
+  const selectedPost = useSelector(loadSinglePost);
+
   return (
     <div className="post">
       <h1>{title}</h1>
@@ -19,10 +23,29 @@ export const Post : React.FC<Props> = ({ id, title, body }) => {
       <button
         type="button"
         onClick={() => {
-          dispatch(counterSlice.actions.selectPost(id));
+          if ((selectedPost === null) || (selectedPost.id !== id)) {
+            dispatch(counterSlice.actions.selectPost(id));
+          } else {
+            dispatch(counterSlice.actions.selectPost(null));
+          }
         }}
       >
-        Show more
+        { selectedPost
+          ? ('Close post')
+          : ('Show more')}
+      </button>
+      <button
+        type="button"
+        onClick={async () => {
+          await DeleteFromServer(id);
+          dispatch(
+            counterSlice
+              .actions
+              .showPosts(await GetFromServer('posts')),
+          );
+        }}
+      >
+        Delete Post
       </button>
     </div>
 
