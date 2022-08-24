@@ -24,9 +24,11 @@ export const App: React.FC = () => {
   return (
     <>
       <header>
-        <Link to="/">Home</Link>
-        <Link to="/posts">Posts</Link>
-        <Link to="/post_creator">Create Post</Link>
+        <div className="navigation">
+          <Link className="navigation__link" to="/">Home</Link>
+          <Link className="navigation__link" to="/posts">Posts</Link>
+          <Link className="navigation__link" to="/post_creator">Create Post</Link>
+        </div>
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />

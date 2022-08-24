@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 import { loadPosts, loadSinglePost } from '../store/selectors';
 import { Post } from '../components/Post/Post';
 import { PostDataType } from '../react-app-env';
@@ -12,7 +13,7 @@ export const Posts : React.FC = () => {
   const [isPostsShown, setPostsShown] = useState(false);
 
   return (
-    <div className="posts__container">
+    <div className={classNames({ empty: !isPostsShown }, { posts__container: isPostsShown })}>
       {
         (isPostsShown)
           ? (
@@ -45,9 +46,6 @@ export const Posts : React.FC = () => {
               >
                 show me posts
               </button>
-              <p>
-                There is no posts right now :c
-              </p>
             </>
           )
       }

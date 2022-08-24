@@ -27,6 +27,7 @@ export const Post : React.FC<Props> = ({ id, title = '', body = '' }) => {
           <h1>{title}</h1>
           <p>{body}</p>
           <button
+            className="post__button"
             type="button"
             onClick={() => {
               setRedactingPost(true);
@@ -51,6 +52,7 @@ export const Post : React.FC<Props> = ({ id, title = '', body = '' }) => {
             />
             <button
               type="button"
+              className="post__button"
               onClick={async () => {
                 const postToUpdate = {
                   id,
@@ -74,6 +76,7 @@ export const Post : React.FC<Props> = ({ id, title = '', body = '' }) => {
       }
       <button
         type="button"
+        className="post__button"
         onClick={() => {
           if ((selectedPost === null) || (selectedPost.id !== id)) {
             dispatch(counterSlice.actions.selectPost(id));
@@ -88,6 +91,7 @@ export const Post : React.FC<Props> = ({ id, title = '', body = '' }) => {
       </button>
       <button
         type="button"
+        className="post__button"
         onClick={async () => {
           await DeleteFromServer(id);
           dispatch(

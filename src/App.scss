@@ -3,3 +3,21 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.empty {
+  display: flex;
+  justify-content: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+
+  padding: 16px;
+
+  margin-bottom: 16px;
+
+  &__link {
+    color: white;
+  }
+}

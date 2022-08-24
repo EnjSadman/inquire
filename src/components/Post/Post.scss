@@ -1,6 +1,7 @@
 .post {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   max-width: 27%;
   min-width: 20%;
@@ -9,4 +10,17 @@
   margin-bottom: 16px;
 
   border: 1px solid black;
+
+  &__button {
+    width: 30%;
+    background-color: transparent;
+    border-radius: 5%;
+    margin-bottom: 16px;
+    border: 1px solid black;
+
+    &:hover {
+      cursor: pointer;
+      color: red;
+    }
+  }
 }
