@@ -12,8 +12,9 @@ export const PostCreator : React.FC = () => {
   const posts = useSelector(loadPosts);
 
   return (
-    <div>
+    <div className="postCreator">
       <form
+        className="postCreator__form"
         onSubmit={(event) => {
           event.preventDefault();
 
@@ -25,6 +26,9 @@ export const PostCreator : React.FC = () => {
 
           dispatch(counterSlice.actions.showPosts([...posts, newPost]));
           PutOnServer('posts', newPost);
+
+          setTitle('');
+          setBody('');
         }}
       >
         <input

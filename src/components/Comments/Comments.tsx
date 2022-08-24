@@ -23,38 +23,41 @@ export const Comments : React.FC<Props> = ({ id }) => {
 
   return (
     <div className="comments">
-      {
-        commentsArray.map(singleComment => (
-          <p key={singleComment.id}>
-            {singleComment.body}
-          </p>
-        ))
-      }
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
+      <h1 className="comments__title">Comment section</h1>
+      <div className="comments__body">
+        {
+          commentsArray.map(singleComment => (
+            <p className="comments__body--text" key={singleComment.id}>
+              {singleComment.body}
+            </p>
+          ))
+        }
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
 
-          const newComment = {
-            postId: id,
-            body: commentBody,
-          };
+            const newComment = {
+              postId: id,
+              body: commentBody,
+            };
 
-          PutOnServer('comments', newComment);
+            PutOnServer('comments', newComment);
 
-          setCommentArray([...commentsArray, newComment]);
-        }}
-      >
-        <input
-          type="text"
-          value={commentBody}
-          onChange={(event) => {
-            setCommentBody(event.target.value);
+            setCommentArray([...commentsArray, newComment]);
           }}
-        />
-        <button type="submit">
-          send
-        </button>
-      </form>
+        >
+          <input
+            type="text"
+            value={commentBody}
+            onChange={(event) => {
+              setCommentBody(event.target.value);
+            }}
+          />
+          <button type="submit">
+            send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
